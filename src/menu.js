@@ -1,94 +1,100 @@
+// Create a menu card for each type of menu item (drinks, breads, spreads, pastries, other)
+function createMenuCard(title, icon, optionsObject, menuWrapper) {
+  const card = document.createElement("div");
+  card.classList.add("menu-card");
+  card.classList.add(title.toLowerCase());
+
+  const cardTitle = document.createElement("div");
+  cardTitle.classList.add("menu-title-wrapper");
+  cardTitle.innerHTML = `<h2>${title}</h2><i class="ph-thin ${icon}"></i>`;
+  card.appendChild(cardTitle);
+
+  const cardOptions = document.createElement("div");
+  cardOptions.classList.add("menu-options");
+
+  for (const [option, price] of Object.entries(optionsObject)) {
+    const optionElement = document.createElement("div");
+    optionElement.classList.add("menu-option");
+    optionElement.innerHTML = `<p>${option}</p><p>${price}</p>`;
+    cardOptions.appendChild(optionElement);
+  }
+
+  card.appendChild(cardOptions);
+  menuWrapper.appendChild(card);
+}
+
 function menu() {
   console.log("Menu tab loaded");
   const menuWrapper = document.createElement("div");
   menuWrapper.classList.add("tab-wrapper", "menu-wrapper");
 
-  // Create drinks card
-  const drinks = document.createElement("div");
-  drinks.classList.add("menu-card");
-  drinks.classList.add("drinks");
-  const drinksTitle = document.createElement("div");
-  drinksTitle.classList.add("menu-title-wrapper");
-  drinksTitle.innerHTML = `<h2>Drinks</h2>
-                           <i class="ph-thin ph-coffee"></i>`;
-  drinks.appendChild(drinksTitle);
-  const drinksOptions = document.createElement("div");
-  drinksOptions.classList.add("menu-options");
-  const drinksObject = {
-    Espresso: "1.50",
-    Cappuccino: "3.00",
-    Latte: "3.50",
-    Macchiato: "2.50",
-    Mocha: "4.00",
-    Americano: "2.00",
-    "Flat White": "3.00",
-    "Hot Chocolate": "2.50",
-    Tea: "1.50",
-  };
+  createMenuCard(
+    "Drinks",
+    "ph-coffee",
+    {
+      Espresso: "1.50",
+      Cappuccino: "3.00",
+      Latte: "3.50",
+      Macchiato: "2.50",
+      Mocha: "4.00",
+      Americano: "2.00",
+      "Flat White": "3.00",
+      "Hot Chocolate": "2.50",
+      Tea: "1.50",
+    },
+    menuWrapper
+  );
 
-  for (const [drink, price] of Object.entries(drinksObject)) {
-    const drinkOption = document.createElement("div");
-    drinkOption.classList.add("menu-option");
-    drinkOption.innerHTML = `<p>${drink}</p><p>${price}</p>`;
-    drinksOptions.appendChild(drinkOption);
-  }
-  drinks.appendChild(drinksOptions);
-  menuWrapper.appendChild(drinks);
+  createMenuCard(
+    "Breads",
+    "ph-bread",
+    {
+      Amasado: "1.50",
+      Marraqueta: "3.00",
+      Hallula: "3.50",
+      Coliza: "2.50",
+      Sopaipilla: "4.00",
+    },
+    menuWrapper
+  );
 
-  // Create breads card
-  const breads = document.createElement("div");
-  breads.classList.add("menu-card");
-  breads.classList.add("breads");
-  const breadsTitle = document.createElement("div");
-  breadsTitle.classList.add("menu-title-wrapper");
-  breadsTitle.innerHTML = `<h2>Breads</h2>
-                            <i class="ph-thin ph-bread"></i>`;
-  breads.appendChild(breadsTitle);
-  const breadsOptions = document.createElement("div");
-  breadsOptions.classList.add("menu-options");
-  const breadsObject = {
-    Amasado: "1.50",
-    Marraqueta: "3.00",
-    Hallula: "3.50",
-    Coliza: "2.50",
-    Sopaipilla: "4.00",
-  };
+  createMenuCard(
+    "Spreads",
+    "ph-knife",
+    {
+      Manjar: "1.50",
+      Palta: "3.00",
+      Mermelada: "3.50",
+      "Dulce de membrillo": "2.50",
+    },
+    menuWrapper
+  );
 
-  for (const [bread, price] of Object.entries(breadsObject)) {
-    const breadOption = document.createElement("div");
-    breadOption.classList.add("menu-option");
-    breadOption.innerHTML = `<p>${bread}</p><p>${price}</p>`;
-    breadsOptions.appendChild(breadOption);
-  }
-  breads.appendChild(breadsOptions);
-  menuWrapper.appendChild(breads);
+  createMenuCard(
+    "Pastries",
+    "ph-cookie",
+    {
+      Kuchen: "1.50",
+      Milhojas: "3.00",
+      Berliner: "3.50",
+      Alfajor: "2.50",
+      Torta: "4.00",
+    },
+    menuWrapper
+  );
 
-  // Create spreads card
-  const spreads = document.createElement("div");
-  spreads.classList.add("menu-card");
-  spreads.classList.add("spreads");
-  const spreadsTitle = document.createElement("div");
-  spreadsTitle.classList.add("menu-title-wrapper");
-  spreadsTitle.innerHTML = `<h2>Spreads</h2>
-                            <i class="ph-thin ph-knife"></i>`;
-  spreads.appendChild(spreadsTitle);
-  const spreadsOptions = document.createElement("div");
-  spreadsOptions.classList.add("menu-options");
-  const spreadsObject = {
-    Manjar: "1.50",
-    Palta: "3.00",
-    Mermelada: "3.50",
-    "Dulce de membrillo": "2.50",
-  };
-
-  for (const [spread, price] of Object.entries(spreadsObject)) {
-    const spreadOption = document.createElement("div");
-    spreadOption.classList.add("menu-option");
-    spreadOption.innerHTML = `<p>${spread}</p><p>${price}</p>`;
-    spreadsOptions.appendChild(spreadOption);
-  }
-  spreads.appendChild(spreadsOptions);
-  menuWrapper.appendChild(spreads);
+  createMenuCard(
+    "Other",
+    "ph-fork-knife",
+    {
+      Empanadas: "1.50",
+      Choripan: "3.00",
+      Chacarero: "3.50",
+      Completo: "2.50",
+      Churrasco: "4.00",
+    },
+    menuWrapper
+  );
 
   return menuWrapper;
 }

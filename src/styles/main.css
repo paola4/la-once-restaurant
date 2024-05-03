@@ -59,6 +59,10 @@ h6 {
   text-align: center;
   width: 65%;
 }
+
+.about-section {
+  font-weight: 100;
+}
 .menu-card {
   display: flex;
   justify-content: start;
